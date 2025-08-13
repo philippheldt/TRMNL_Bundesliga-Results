@@ -5,7 +5,7 @@ A lightweight web application for [TRMNL](https://usetrmnl.com) that displays **
 ## Features
 
 -   📅 **Matchday Overview** – All games with date, time, and results (live or final)
--   📊 **League Table** – Updated standings with visual indicators for Champions League, Europa League, and relegation
+-   📊 **League Table** – Updated standings with visual indicators for Champions League, Europa League, Conference League and relegation
 -   🔄 **Live Data** – Automatically updated via OpenLigaDB API
 -   🖥 **Optimized for TRMNL** – Four HTML layout versions to suit different display configurations
 
