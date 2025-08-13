@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://usetrmnl.com/css/latest/plugins.css">
+    <script src="https://usetrmnl.com/js/latest/plugins.js"></script>
+    <style>
+        .position {
+            display: inline;
+            color: transparent;
+            width: 140px;
+        }
+
+
+        td:has(.position) {
+            width: 14px;
+        }
+
+        td:has(.positionNumber) {
+            width: 24px;
+        }
+
+        td:has(.ptsNumber) {
+            width: 24px;
+        }
+
+        .ptsNumber {
+            text-align: right;
+        }
+
+        td:has(.teamName) {
+            width: 96px;
+        }
+    </style>
+</head>
+
+<body class="environment trmnl">
+    <div class="screen">
+        <div class="view view--full">
+            <div class="layout">
+
+
+                <span class="title spieltag">Tabelle</span><br>
+
+
+
+            </div>
+            <div class="title_bar">
+                <img class="image image-stroke image-stroke--small"
+                    src="https://filedn.eu/lm9kmI3DGyeXIWHOXT8UUwH/TRMNL/logo.png" />
+                <span class="title">Bundesliga</span>
+                <span class="instance seasonName"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        const currentYear = new Date().getFullYear();
+        if (new Date().getMonth() < 7) {
+            currentYear -= 1;
+        }
+        const seasonName = document.querySelector('.seasonName');
+        seasonName.textContent = `Saison ${currentYear}/${currentYear + 1}`;
+
+        fetch(`https://api.openligadb.de/getbltable/bl1/${currentYear}`)
+            .then(res => res.json())
+            .then(data => {
+            })
+            .catch(console.error);
+
+
+        function createMatchRow(match) {
+
+        }
+
+
+        fetch("https://api.openligadb.de/getmatchdata/bl1")
+            .then(res => res.json())
+            .then(data => {
+                const spieltag = document.querySelector('.spieltag');
+                const firstDate = new Date(data[0].matchDateTime);
+                const lastDate = new Date(data[data.length - 1].matchDateTime);
+                data.forEach((match, index) => {
+                    spieltag.textContent = `${match.group.groupName} (${firstDate.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" })} - ${lastDate.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" })})`;
+                });
+            })
+            .catch(console.error);
+    </script>
+</body>
+
+</html>
